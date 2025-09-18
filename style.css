@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-image: url(/img/fund.png);
+}
+.caixacima{
+    background-color: white;
+    display: flex;
+    color: black;
+    width: 1093px;
+    height: 546px;
+    border-radius: 40px ;
+    border: 2px solid rgb(0, 0, 0);
+    margin-left: auto;
+
+}
+.caixacima h1{
+    font-size: 48px;
+}
+.caixacima .check{
+    flex-direction: column;
+    
+}
+.caixabaixo{
+    background-color: white;
+    color: black;
+    width: 558px;
+    height: 546px;
+    border-radius: 40px ;
+    border: 2px solid rgb(0, 0, 0);
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.caixabaixo h1{
+    font-size: 48px;
+}
+.caixabaixo p{
+    font-size: 32px;
+}
+.butao{
+    background-color: white;
+    color: black;
+    width: 200px;
+    height: 80px;
+    font-size: 32px;
+    border-radius: 10px;
+    border: none;
+}

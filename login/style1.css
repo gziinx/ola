@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url(../img/fund.png   );
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  .login-box {
+    background: #fff;
+    border: 1px solid #8AA9FF;
+    border-radius: 40px;
+    padding: 40px;
+    width: 822px;
+    height: 800px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    text-align: center;
+    gap: 10px; 
+  }
+  
+  .login-box h1 {
+    margin-bottom: 30px;
+    font-size: 58px;
+    font-family: 'Krona One', sans-serif;;
+    color: #000;
+  }
+  
+  .input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 60px;
+    border: 3px solid #8AA9FF;
+    border-radius: 40px;
+    padding: 10px 15px;
+    margin-top: 20px;
+    
+  }
+  
+  .input-group .icon {
+    margin-right: 10px;
+    font-size: 50px;
+    color: #8AA9FF;
+  }
+  
+  .input-group input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 20px;
+    width: 770px;
+    height: 107px;
+    
+  }
+  .linha{
+    background: #8AA9FF;
+    width: 472px;
+    height: 10px;
+    margin: 0 auto;
+  
+  }
+  
+  .btn {
+    background: #8AA9FF;
+    border: 2px solid white;
+    color: #fff;
+    font-size: 30px;
+    font-family: 'Krona One', sans-serif;;
+    padding: 12px;
+    border-radius: 30px;
+    width: 456px;
+    height: 107px;
+    cursor: pointer;
+
+    margin-top: 40px;
+  }
+  .fundu{
+    position: absolute;
+    right: 1px;
+    height: 100%;
+    z-index: -9999;
+}
+
+  
+

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro-bebe</title>
+    <link rel="stylesheet" href="style1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="logo">
+        <img src="../img/logu.png" alt="">
+    </div>
+    <div class="titulo">
+        <p>DADOS DO BEBE</p>
+    </div>
+    <div class="form-box">
+        <!-- Identificação -->
+        <div class="section">
+          <h2>Identificação</h2>
+          <div class="input-group">
+            <label>Nome completo *</label>
+            <input type="text" placeholder="Digite o nome completo">
+          </div>
+          <div class="row">
+            <div class="input-group">
+              <label>Data de Nascimento *</label>
+              <input type="date">
+            </div>
+            <div class="input-group">
+              <label>Sexo *</label>
+              <select>
+                <option>Selecione</option>
+                <option>Masculino</option>
+                <option>Feminino</option>
+                <option>Outro</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-group">
+              <label>Nacionalidade *</label>
+              <input type="text" placeholder="Ex: Brasileiro">
+            </div>
+            <div class="input-group">
+              <label>Naturalidade *</label>
+              <input type="text" placeholder="Cidade/Estado">
+            </div>
+          </div>
+        </div>
+    
+        <!-- Saúde ao Nascer -->
+        <div class="section">
+          <h2>Saúde ao Nascer</h2>
+          <div class="row">
+            <div class="input-group">
+              <label>Peso *</label>
+              <input type="text" placeholder="Ex: 3.2">
+            </div>
+            <div class="input-group">
+              <label>Altura (cm) *</label>
+              <input type="text" placeholder="Ex: 50">
+            </div>
+          </div>
+          <div class="input-group">
+            <label>Tipo Sanguíneo *</label>
+            <select>
+              <option>Selecione</option>
+              <option>A+</option>
+              <option>A-</option>
+              <option>B+</option>
+              <option>B-</option>
+              <option>O+</option>
+              <option>O-</option>
+              <option>AB+</option>
+              <option>AB-</option>
+            </select>
+          </div>
+        </div>
+    
+        <!-- Documentos -->
+        <div class="section">
+          <h2>Documentos</h2>
+          <div class="input-group">
+            <label>Certidão de Nascimento</label>
+            <input type="text" placeholder="Número da certidão">
+          </div>
+          <div class="input-group">
+            <label>CPF</label>
+            <input type="text" placeholder="000.000.000-00 (opcional)">
+          </div>
+          <div class="input-group">
+            <label>Cartão SUS/Convênio</label>
+            <input type="text" placeholder="Selecione">
+          </div>
+        </div>
+    
+        <!-- Upload -->
+        <div class="section">
+          <h2>Upload de arquivos</h2>
+          <div class="upload-box">
+            Arraste e solte os arquivos aqui ou clique para enviar
+          </div>
+        </div>
+    
+    
+        <!-- Botão -->
+        <button class="btn">PRÓXIMO</button>
+      </div>
+</body>
+
+</html>

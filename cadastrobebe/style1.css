@@ -1,0 +1,137 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url(../img/fund.png   );
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Krona One', sans-serif;;
+    flex-direction: column;
+  }
+  
+  
+  .form-box {
+    background: #fff;
+    border-radius: 50px;
+    padding: 40px;
+    width: 1000px;
+    border: 1px solid black;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-family: 'Krona One', sans-serif;
+    font-size: 22px;
+    margin: 20px 0 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #000;
+  }
+
+  h2::before {
+    content: "❤";
+    font-size: 22px;
+    color: #d36a96;
+  }
+
+  .section:nth-of-type(2) h2::before { content: "🩺"; }
+  .section:nth-of-type(3) h2::before { content: "📄"; }
+  .section:nth-of-type(4) h2::before { content: "📤"; }
+  .section:nth-of-type(5) h2::before { content: "📝"; }
+
+  .input-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius:30px;
+    font-size: 16px;
+    margin-right: 20px;
+  }
+
+  textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+
+  .row {
+    display: flex;
+    gap: 40px;
+  }
+
+  .row .input-group {
+    flex: 1;
+  }
+
+  .upload-box {
+    border: 2px dashed #d3a6b5;
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    color: #999;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .btn {
+    margin-top: 20px;
+    width: 236px;
+    padding: 15px;
+    font-size: 16px;
+    background: #708EF1;
+    color: #000;
+    border: 1 solid black;
+    border-radius: 30px;
+    font-family: 'Krona One', sans-serif;
+    cursor: pointer;
+    height: 96px;
+    margin-left: auto;
+  }
+  .select-box {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .btn:hover {
+    background: #357ABD;
+  }
+  .logo{
+      background-color: #fff;
+      width: 143px;
+      height: 71px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    margin-top: 24px;
+    margin-bottom: 11px;   
+
+  }
+  .logo img {
+      size: auto;
+  }
+.titulo{
+    background-color: #708EF1;
+    color: white;
+    border-radius: 30px;
+    width: 232px;
+    height: 55px;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 27px;
+}
+
+  
+
