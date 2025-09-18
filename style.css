@@ -1,52 +1,90 @@
-* {
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-body{
-    background-image: url(/img/fund.png);
-}
-.caixacima{
-    background-color: white;
+    font-family: 'Krona One', sans-serif;
+    background: url("./img/fundu2.png") no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Krona One', sans-serif;;
+  }
+  
+  /* Container principal */
+  .container {
     display: flex;
-    color: black;
-    width: 1093px;
-    height: 546px;
-    border-radius: 40px ;
-    border: 2px solid rgb(0, 0, 0);
-    margin-left: auto;
-
-}
-.caixacima h1{
-    font-size: 48px;
-}
-.caixacima .check{
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    padding: 0 60px;
+  }
+  
+  /* Box da logo */
+  .logo-box {
+    display: flex;
     flex-direction: column;
-    
-}
-.caixabaixo{
-    background-color: white;
-    color: black;
-    width: 558px;
-    height: 546px;
-    border-radius: 40px ;
-    border: 2px solid rgb(0, 0, 0);
     align-items: center;
     text-align: center;
-    justify-content: center;
-}
-.caixabaixo h1{
-    font-size: 48px;
-}
-.caixabaixo p{
-    font-size: 32px;
-}
-.butao{
-    background-color: white;
-    color: black;
-    width: 200px;
-    height: 80px;
-    font-size: 32px;
-    border-radius: 10px;
-    border: none;
-}
+  }
+  
+  .logo-box img {
+
+    width: 1000px;
+    height: 1000px;
+    margin-bottom: 20px;
+  }
+  
+  .logo-box h1 {
+    font-size: 60px;
+    color: #333;
+    line-height: 1.2;
+  }
+  
+  .logo-box .heart {
+    color: #4A90E2; /* azul igual ao mockup */
+  }
+  
+  /* Card da direita */
+  .card {
+      display: flex ;
+    background: #a7d6ff7c;
+    border: 2px solid #0C69FF;
+    border-radius: 25px;
+    padding: 40px;
+    width: 730px;
+    height: 700px;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .card h2 {
+    font-size: 58px;
+    margin-bottom: 30px;
+    color: #000;
+  }
+  .card .btn{
+      justify-content: center;
+      align-items: center;
+  }
+  
+  /* Botões */
+  .btn {
+    width: 459px;
+    height: 91px;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #000;
+    border-radius: 30px;
+    background: #fff;
+    font-size: 30px;
+    font-family: 'Krona One', sans-serif;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 100px;
+ 
+  }
+  
+  .btn:hover {
+    background: #4A90E2;
+    color: #fff;
+    border-color: #4A90E2;
+  }
+  

@@ -31,67 +31,25 @@
               <label>Data de Nascimento *</label>
               <input type="date">
             </div>
-            <div class="input-group">
-              <label>Sexo *</label>
-              <select>
-                <option>Selecione</option>
-                <option>Masculino</option>
-                <option>Feminino</option>
-                <option>Outro</option>
-              </select>
-            </div>
-          </div>
           <div class="row">
             <div class="input-group">
-              <label>Nacionalidade *</label>
-              <input type="text" placeholder="Ex: Brasileiro">
+              <label>CPF</label>
+              <input type="number" placeholder="000.000.000-00" required>
             </div>
             <div class="input-group">
-              <label>Naturalidade *</label>
-              <input type="text" placeholder="Cidade/Estado">
+              <label>Telefone</label>
+              <input type="number" placeholder="(00) 00000-0000">
             </div>
           </div>
         </div>
     
-        <!-- Saúde ao Nascer -->
-        <div class="section">
-          <h2>Saúde ao Nascer</h2>
-          <div class="row">
-            <div class="input-group">
-              <label>Peso *</label>
-              <input type="text" placeholder="Ex: 3.2">
-            </div>
-            <div class="input-group">
-              <label>Altura (cm) *</label>
-              <input type="text" placeholder="Ex: 50">
-            </div>
-          </div>
-          <div class="input-group">
-            <label>Tipo Sanguíneo *</label>
-            <select>
-              <option>Selecione</option>
-              <option>A+</option>
-              <option>A-</option>
-              <option>B+</option>
-              <option>B-</option>
-              <option>O+</option>
-              <option>O-</option>
-              <option>AB+</option>
-              <option>AB-</option>
-            </select>
-          </div>
-        </div>
     
         <!-- Documentos -->
         <div class="section">
           <h2>Documentos</h2>
           <div class="input-group">
-            <label>Certidão de Nascimento</label>
-            <input type="text" placeholder="Número da certidão">
-          </div>
-          <div class="input-group">
-            <label>CPF</label>
-            <input type="text" placeholder="000.000.000-00 (opcional)">
+            <label>E-mail</label>
+            <input type="email" placeholder="E-mail">
           </div>
           <div class="input-group">
             <label>Cartão SUS/Convênio</label>
@@ -108,7 +66,10 @@
           <input type="file" id="upload" accept="image/*" hidden />
         </div>
         
-    
+        <label class="checkbox-item">
+            <input type="checkbox">
+            Adicionar segundo responsável
+          </label>
     
         <!-- Botão -->
         <div class="btn-container">
