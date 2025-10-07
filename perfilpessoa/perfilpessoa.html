@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+    <title>o</title>
+</head>
+
+
+<body>
+    <header>
+        <nav class="menu">
+            <a href="#">Home</a>
+            <a href="#">Calendário</a>
+            <a href="#">Dicas</a>
+            <a href="#">Consultas</a>
+            <a href="#">Rotina</a>
+        </nav>
+    </header>
+    <div class="container">
+
+        <div class="header">
+            <h2>Perfil do Responsável</h2>
+            <div class="logobebe" onclick="window.location.href='/bebe.html'">
+                <img src="../img/bebe.png" alt="">
+            </div>
+        </div>
+
+        <div class="perfil">
+            <h3>NOME/APELIDO RESPONSÁVEL</h3>
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="foto perfil">
+            <br>
+            <button>✏️ Editar</button>
+        </div>
+
+        <div class="campos">
+            <div class="campo campo-full">
+                <label>Nome/Apelido</label>
+                <input type="text" placeholder="ROBERTO" readonly>
+            </div>
+
+            <div class="campo campo-full">
+                <label>Data de Nascimento</label>
+                <input type="text" placeholder="01/04/1998" readonly>
+            </div>
+
+            <div class="campo">
+                <label>CPF</label>
+                <input type="text" placeholder="432.065.774-01" required>
+            </div>
+
+            <div class="campo">
+                <label>Telefone</label>
+                <input type="text" placeholder="(11) 99132-3444" readonly>
+            </div>
+
+            <div class="campo campo-full">
+                <label>E-mail</label>
+                <input type="text" placeholder="feliccc31@gmail.com" readonly>
+            </div>
+
+            <div class="campo campo-full">
+                <label>Cartão SUS/Convênio</label>
+                <input type="text" placeholder="3704 5563 7184 423" readonly>
+            </div>
+        </div>
+        <button class="bore" type="submit"> Salvar</button>
+    </div>
+    
+</body>
+
+</html>

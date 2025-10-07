@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style1.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+    <title>ob</title>
+</head>
+<header>
+    <nav class="menu">
+        <a href="#">Home</a>
+        <a href="#">Calendário</a>
+        <a href="#">Dicas</a>
+        <a href="#">Consultas</a>
+        <a href="#">Rotina</a>
+    </nav>
+</header>
+
+<body>
+    <div class="container">
+
+        <div class="header">
+            <img src="../img/back.png" onclick="window.location.href='../perbebe/perbebe.html'" width="20px", height="auto", alt="">
+            <h2> Perfil do Bebê</h2>
+        </div>
+
+        <div class="perfil">
+            <h3>NOME/APELIDO BEBÊ</h3>
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="foto perfil">
+            <br>
+            <button>✏️ Editar</button>
+        </div>
+
+        <div class="campos">
+            <div class="campo campo-full">
+                <label>Nome completo</label>
+                <input type="text" placeholder="ROBERTO" required>
+            </div>
+
+            <div class="campo campo-full">
+                <label>Data de Nascimento</label>
+                <input type="date" placeholder="01/04/1998" required>
+            </div>
+
+            <div class="campo">
+                <label>CPF(opcional)</label>
+                <input type="text" placeholder="432.065.774-01" >
+            </div>
+
+            <div class="campo">
+                <label>Sexo</label>
+                <input type="text" placeholder="Masculino" required>
+            </div>
+
+            <div class="campo campo-full">
+                <label>Nacionalidade</label>
+                <input type="text" placeholder="Brasileiro" required>
+            </div>
+            <div class="campo">
+                <label>Peso</label>
+                <input type="text" placeholder="3,2" >
+            </div>
+
+            <div class="campo">
+                <label>Altura</label>
+                <input type="text" placeholder="50cm" required>
+            </div>
+
+            <div class="campo campo-full">
+                <label>Cartão SUS/Convênio</label>
+                <input type="text" placeholder="3704 5563 7184 423" required>
+            </div>
+            <div class="campo campo-full">
+                <label>Tipo Sanguineo</label>
+                <input type="text" placeholder="Tipo: A" required>
+            </div>
+            <div class="campo campo-full">
+                <label>Certidao de Nascimento (Numero)</label>
+                <input type="text" placeholder="43637-935-09" required>
+            </div>
+        </div>
+        <button class="bore" type="submit"> Salvar</button>
+    </div>
+</body>
+
+</html>
