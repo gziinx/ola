@@ -5,17 +5,19 @@ const inputTelefone = document.querySelector('input[placeholder="(11) 99132-3444
 const inputEmail = document.querySelector('input[placeholder="feliccc31@gmail.com"]');
 const inputCartao = document.querySelector('input[placeholder="3704 5563 7184 423"]');
 
+// ======== FUNÇÃO PARA FORMATAR DATA ========
 function formatDateBR(isoDate) {
     const date = new Date(isoDate);
-    const day = String(date.getDate()).padStart(2,'0');
-    const month = String(date.getMonth() + 1).padStart(2,'0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
 }
 
+// ======== CARREGAR PERFIL DO RESPONSÁVEL ========
 async function carregarPerfil() {
     try {
-        const res = await fetch(`http://localhost:3030/v1/sosbaby/resp/1`);
+        const res = await fetch(`http://localhost:3030/v1/sosbaby/resp/2`);
         const data = await res.json();
 
         if (res.ok && data.responsavel) {
@@ -25,16 +27,33 @@ async function carregarPerfil() {
             inputNome.value = resp.nome;
             inputNascimento.value = formatDateBR(resp.data_nascimento);
             inputTelefone.value = resp.telefone;
-            inputEmail.value = resp.email || '';
+            inputEmail.value = (resp.usuario && resp.usuario[0] && resp.usuario[0].email) || '';
             inputCartao.value = resp.cartao_medico;
-
         } else {
             console.error('Responsável não encontrado');
         }
-
     } catch (error) {
         console.error('Erro ao carregar perfil:', error);
     }
 }
 
 carregarPerfil();
+
+// ======== TROCAR FOTO DE PERFIL ========
+const botaoTrocar = document.getElementById('btnTrocarFoto');
+const inputFoto = document.getElementById('inputFoto');
+const imgPerfil = document.getElementById('fotoPerfil');
+
+// Quando clicar no botão, abre o seletor de arquivos
+botaoTrocar.addEventListener('click', () => {
+    inputFoto.click();
+});
+
+// Quando escolher uma imagem, atualiza a foto na tela
+inputFoto.addEventListener('change', (event) => {
+    const arquivo = event.target.files[0];
+    if (arquivo) {
+        const urlImagem = URL.createObjectURL(arquivo);
+        imgPerfil.src = urlImagem;
+    }
+});
