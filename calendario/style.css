@@ -1,0 +1,137 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: "Poppins", sans-serif;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .calendar {
+    width: 771px;
+    height: 537px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 25px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    padding: 25px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease-in;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px; /* espaçamento entre o mês e os dias */
+  }
+  
+  .header h2 {
+    font-size: 1.4rem;
+    color: black;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  
+  .nav-btn {
+    background: transparent;
+    color: black;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .nav-btn:hover {
+    transform: scale(1.3) rotate(10deg);
+  }
+  
+  .weekdays, .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    gap: 10px;
+  }
+  
+  .weekdays div {
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  
+  .weekday {
+    color: #4a6ef5; /* Azul para dias úteis */
+  }
+  
+  .weekend {
+    color: #f34a4a; /* Vermelho para finais de semana */
+  }
+  
+  .days div {
+    padding: 20px;
+    border-radius: 12px;
+    margin: 4px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+    background: transparent;
+  }
+  
+  /* Hover respeitando a cor original */
+  .days div:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+  }
+  
+  /* Dia atual */
+  .days .today {
+    background: rgba(255,255,255,0.1);
+    border: 2px solid #fff;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(255,255,255,0.7);
+  }
+  
+  /* Animação ao mudar mês */
+  .fade {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.3s ease;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Responsivo */
+  @media (max-width: 800px) {
+    .days div {
+      padding: 20px;
+      font-size: 1.1rem;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .calendar {
+      width: 90%;
+      padding: 20px;
+    }
+    .days div {
+      padding: 15px;
+      font-size: 1rem;
+    }
+  }
+  
