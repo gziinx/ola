@@ -84,3 +84,38 @@ nextBtn.addEventListener("click", () => {
 });
 
 renderCalendar();
+
+  const botaoMais = document.querySelector('.botao-mais');
+  const modal = document.getElementById('modal');
+
+  botaoMais.addEventListener('click', () => {
+    modal.style.display = 'flex';
+  });
+
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+
+  const botaoMaisCor = document.querySelector('.cor.mais');
+const colorModal = document.getElementById('colorModal');
+const colorPickerInput = document.getElementById('colorPickerInput');
+const confirmColor = document.getElementById('confirmColor');
+const cancelColor = document.getElementById('cancelColor');
+
+botaoMaisCor.addEventListener('click', () => {
+  colorModal.style.display = 'flex';
+});
+
+cancelColor.addEventListener('click', () => {
+  colorModal.style.display = 'none';
+});
+
+confirmColor.addEventListener('click', () => {
+  const novaCor = colorPickerInput.value;
+  botaoMaisCor.style.backgroundColor = novaCor;
+  colorModal.style.display = 'none';
+});
+
+  
