@@ -10,6 +10,7 @@
   <main>
     <div class="card-azul">
       <h2>Hoje</h2>
+
       <div class="card-branco">
         <div class="circulo"></div>
         <h3>Consulta com o pediatra</h3>
@@ -18,24 +19,20 @@
           <img src="../img/image.png" alt="">
         </div>
       </div>
+
       <div class="card-branco">
         <div class="circulo"></div>
-        <h3>Consulta com o pediatra</h3>
-        <p>12/09 - 08:00 AM</p>
+        <h3>Reunião com o professor</h3>
+        <p>14/09 - 10:00 AM</p>
         <div class="lixo">
           <img src="../img/image.png" alt="">
         </div>
       </div>
-      <div class="card-branco">
-        <div class="circulo"></div>
-        <h3>Consulta com o pediatra</h3>
-        <p>12/09 - 08:00 AM</p>
-        <div class="lixo">
-          <img src="../img/image.png" alt="">
-        </div>
-      </div>
+
       <button class="botao-mais">+</button>
     </div>
+
+    <!-- MODAL PRINCIPAL -->
     <div class="modal" id="modal">
       <div class="modal-content">
         <h2>Data e Horário</h2>
@@ -47,25 +44,23 @@
           </div>
           <input type="time" class="hora-input" placeholder="12:00">
         </div>
-    
+
         <h2>Cor</h2>
-        <div class="cores">
+        <div class="cores" id="cores-container">
           <div class="cor laranja"></div>
           <div class="cor ciano"></div>
           <div class="cor roxo"></div>
           <div class="cor vermelho"></div>
           <div class="cor verde"></div>
-          <div class="cor mais">+</div>
+          <div class="cor mais" id="adicionar-cor">+</div>
         </div>
 
-        
-    
         <h2>Título</h2>
         <input type="text" placeholder="Escreva o título" />
-    
+
         <h2>Nota</h2>
         <textarea placeholder="Descreva o evento"></textarea>
-    
+
         <div class="rodape">
           <div class="alarme">
             <label>Alarme</label>
@@ -75,6 +70,8 @@
         </div>
       </div>
     </div>
+
+    <!-- MODAL DE COR -->
     <div class="color-modal" id="colorModal">
       <div class="color-modal-content">
         <h3>Escolha uma cor</h3>
@@ -85,14 +82,15 @@
         </div>
       </div>
     </div>
-    
+
+    <!-- CALENDÁRIO -->
     <div class="calendar">
       <div class="header">
         <button id="prev" class="nav-btn">←</button>
         <h2 id="month-year">Outubro 2025</h2>
         <button id="next" class="nav-btn">→</button>
       </div>
-  
+
       <div class="weekdays" id="weekdays">
         <div class="weekend">Dom</div>
         <div class="weekday">Seg</div>
@@ -102,7 +100,7 @@
         <div class="weekday">Sex</div>
         <div class="weekend">Sáb</div>
       </div>
-  
+
       <div class="days" id="days"></div>
     </div>
   </main>
