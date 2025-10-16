@@ -1,0 +1,477 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: "Poppins", sans-serif;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  main{
+    display: flex;
+    flex-direction: row;
+    
+  }
+  
+  .calendar {
+    width: 771px;
+    height: 537px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 25px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    padding: 25px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease-in;
+    margin-left: 20px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px; /* espaçamento entre o mês e os dias */
+  }
+  
+  .header h2 {
+    font-size: 1.4rem;
+    color: black;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  
+  .nav-btn {
+    background: transparent;
+    color: black;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .nav-btn:hover {
+    transform: scale(1.3) rotate(10deg);
+  }
+  
+  .weekdays, .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    gap: 10px;
+  }
+  
+  .weekdays div {
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  
+  .weekday {
+    color: #4a6ef5; /* Azul para dias úteis */
+  }
+  
+  .weekend {
+    color: #f34a4a; /* Vermelho para finais de semana */
+  }
+  
+  .days div {
+    padding: 20px;
+    border-radius: 12px;
+    margin: 4px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+    background: transparent;
+  }
+  
+  /* Hover respeitando a cor original */
+  .days div:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+  }
+  
+  /* Dia atual */
+  .days .today {
+    background: rgba(255,255,255,0.1);
+    border: 2px solid #fff;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(255,255,255,0.7);
+  }
+  
+  /* Animação ao mudar mês */
+  .fade {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.3s ease;
+  }
+  .card-azul {
+    background-color: #708EF1;
+    border-radius: 30px;
+    padding: 20px;
+    width: 550px;
+    color: #0c0c0c;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    max-height: 800px;
+  }
+  
+  .card-azul h2 {
+    color: #0c0c0c;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .card-branco {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .circulo {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #FFA63D;
+    border: solid 1px #000;
+  }
+  
+  .laranja {
+    background-color: #FFA63D;
+  }
+  
+  .azul {
+    background-color: #33D8FF;
+  }
+  
+  .roxo {
+    background-color: #B83FFF;
+  }
+  
+  .conteudo {
+    flex: 1;
+  }
+  
+  .card-branco h3 {
+    font-size: 13px;
+    color: #000;
+  }
+  
+  .card-branco p {
+    font-size: 11px;
+    color: #555;
+  }
+  
+  .lixo img {
+    margin-top: 5px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+  }
+  
+  .botao-mais {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background-color: #fff;
+    color: #708EF1;
+    border: none;
+    border-radius: 50%;
+    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease;
+  }
+  
+  .botao-mais:hover {
+    transform: scale(1.1);
+  }
+  
+/* --- MODAL --- */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #708EF1;
+  border-radius: 20px;
+  padding: 25px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: #0c0c0c;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.modal-content h2 {
+  font-size: 16px;
+  color: #0c0c0c;
+}
+
+.data-hora {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.data-hora .grupo {
+  display: flex;
+  gap: 8px;
+}
+
+.data-hora select {
+  background-color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.hora-input {
+  background-color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 14px;
+  color: #0c0c0c;
+  cursor: text;
+  width: 90px;
+  text-align: center;
+}
+
+.hora-input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(0.5);
+}
+
+.cores {
+  display: flex;
+  gap: 8px;
+}
+
+.cor {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.2s ease;
+}
+
+.cor:hover {
+  transform: scale(1.1);
+  border-color: #fff;
+}
+
+.laranja { background: #FFA63D; }
+.ciano { background: #33D8FF; }
+.roxo { background: #B83FFF; }
+.vermelho { background: #FF4747; }
+.verde { background: #32E05E; }
+.mais {
+  background: #fff;
+  color: #708EF1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+input[type="text"],
+textarea {
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 13px;
+  outline: none;
+}
+
+textarea {
+  resize: none;
+  height: 60px;
+}
+
+.rodape {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.alarme {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#toggle {
+  width: 35px;
+  height: 20px;
+  appearance: none;
+  background: #ccc;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#toggle:checked {
+  background: #5EE35E;
+}
+
+#toggle::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: 0.3s;
+}
+
+#toggle:checked::before {
+  left: 17px;
+}
+
+#salvar {
+  background: #fff;
+  color: #708EF1;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#salvar:hover {
+  transform: scale(1.05);
+}
+
+/* Mini modal de cor */
+.color-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.color-modal-content {
+  background: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.color-modal-content h3 {
+  color: #0c0c0c;
+  font-size: 16px;
+}
+
+#colorPickerInput {
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.color-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.color-buttons button {
+  flex: 1;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+}
+
+#confirmColor {
+  background: #708EF1;
+  color: #fff;
+}
+
+#cancelColor {
+  background: #eee;
+  color: #333;
+}
+
+.color-buttons button:hover {
+  transform: scale(1.05);
+}
+
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Responsivo */
+  @media (max-width: 800px) {
+    .days div {
+      padding: 20px;
+      font-size: 1.1rem;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .calendar {
+      width: 90%;
+      padding: 20px;
+    }
+    .days div {
+      padding: 15px;
+      font-size: 1rem;
+    }
+  }
+  

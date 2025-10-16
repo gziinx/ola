@@ -29,6 +29,77 @@ body {
 
     margin: 20px auto;
     width: 180px;
+
+    background: url("./img/fundu2.png") no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Krona One', sans-serif;;
+    height: 100vh;
+  }
+  
+  /* Container principal */
+  .container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    padding: 0 60px;
+  }
+  
+  /* Box da logo */
+  .logo-box {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    text-align: center;
+  }
+  
+  .logo-box img {
+
+    width: 850px;
+    height: 800px;
+    margin-top: 200px;
+    margin-left: 50px;
+  }
+  
+  .logo-box h1 {
+    font-size: 60px;
+    color: #333;
+    line-height: 1.2;
+  }
+  
+  .logo-box .heart {
+    color: #4A90E2; /* azul igual ao mockup */
+  }
+  
+  /* Card da direita */
+  .card {
+      display: flex ;
+    background: #a7d6ff7c;
+    border: 2px solid #0C69FF;
+    border-radius: 25px;
+    padding: 40px;
+    width: 630px;
+    height: 600px;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 50px;
+  }
+  
+  .card h2 {
+    font-size: 58px;
+    margin-bottom: 30px;
+    color: #000;
+  }
+  .card .btn{
+      justify-content: center;
+      align-items: center;
+  }
+  
+  /* Botões */
+  .btn {
+    width: 459px;
+    height: 91px;
     padding: 15px;
     font-size: 16px;
     background: #708EF1;

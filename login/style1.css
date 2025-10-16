@@ -14,8 +14,8 @@ body {
     border: 1px solid #8AA9FF;
     border-radius: 40px;
     padding: 40px;
-    width: 822px;
-    height: 800px;
+    width: 672px;
+    height: 650px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     text-align: center;
     gap: 10px; 
@@ -51,7 +51,7 @@ body {
     flex: 1;
     font-size: 20px;
     width: 770px;
-    height: 107px;
+    height: 90px;
     
   }
   .linha{
