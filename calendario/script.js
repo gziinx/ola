@@ -5,6 +5,41 @@ const nextBtn = document.getElementById("next");
 
 let date = new Date();
 
+
+let todosEventos = []; // guarda todos os eventos do backend
+
+async function buscarEventos() {
+  try {
+    const response = await fetch('http://localhost:3030/v1/sosbaby/calenders');
+    const data = await response.json();
+
+    if (response.ok && Array.isArray(data.dateCalender)) {
+      todosEventos = data.dateCalender; // salva globalmente
+      marcarDiasComEventos(todosEventos);
+    } else {
+      console.error('Nenhum evento encontrado');
+    }
+  } catch (error) {
+    console.error('Erro ao buscar eventos:', error);
+  }
+}
+
+// Chama antes de renderizar calendário pela primeira vez
+buscarEventos();
+
+// Dentro do renderCalendar(), depois de criar os dias
+function renderCalendar(direction) {
+  // ... seu código atual para criar os dias
+
+  // Adiciona os pontos no calendário
+  marcarDiasComEventos(todosEventos);
+
+  if (direction) {
+    daysContainer.classList.add("fade");
+    setTimeout(() => daysContainer.classList.remove("fade"), 200);
+  }
+}
+
 // ---------------- RENDER CALENDÁRIO ----------------
 function renderCalendar(direction) {
   const year = date.getFullYear();
@@ -31,13 +66,16 @@ function renderCalendar(direction) {
     const dayElement = document.createElement("div");
     dayElement.textContent = day;
 
+  
+
     const dayOfWeek = new Date(year, month, day).getDay();
     const color = (dayOfWeek === 0 || dayOfWeek === 6) ? "#f34a4a" : "#4a6ef5";
 
     const today = new Date();
     if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
-      dayElement.classList.add("today");
-      dayElement.style.fontWeight = "bold";
+      dayElement.classList.add("dia"); // Adicione esta classe para todos os dias
+dayElement.dataset.data = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+
     }
     dayElement.style.color = color;
 
@@ -163,7 +201,7 @@ salvarBtn.addEventListener('click', async () => {
     }
   }
 
-  const alarmeAtivo = document.getElementById('toggle').checked ? 1 : 2;
+  const alarmeAtivo = document.getElementById('toggle').checked ? 1 : 0;
   const idUser = 1;
 
   const novoEvento = {
@@ -190,7 +228,9 @@ salvarBtn.addEventListener('click', async () => {
     if(response.ok){
       alert('Evento salvo com sucesso!');
       modal.style.display = 'none';
+      location.reload()
       console.log(data);
+      
     } else {
       alert('Erro ao salvar evento: ' + data.message);
       console.log(data);
@@ -201,3 +241,166 @@ salvarBtn.addEventListener('click', async () => {
     alert('Erro interno ao salvar evento');
   }
 });
+
+
+
+//LISTAR O DIA ATUAL
+
+async function listarEventosDoDiaAtual() {
+  const hoje = new Date().toISOString().split('T')[0]; // "2025-10-16"
+
+  try {
+    const response = await fetch('http://localhost:3030/v1/sosbaby/calenders');
+    const data = await response.json();
+
+    console.log('Dados do backend:', data);
+
+    if (response.ok && Array.isArray(data.dateCalender)) {
+      // Extrai apenas a parte da data (YYYY-MM-DD) para comparar
+      const eventosHoje = data.dateCalender.filter(evento => 
+        evento.data_calendario.split('T')[0] === hoje
+      );
+
+      console.log('Eventos do dia atual:', eventosHoje);
+      exibirEventosHoje(eventosHoje);
+
+      marcarDiasComEventos(data.dateCalender);
+    } else {
+      console.error('Nenhum evento encontrado');
+    }
+  } catch (error) {
+    console.error('Erro na requisição:', error);
+  }
+}
+
+function formatarHora(horaUTC) {
+  const date = new Date(horaUTC);
+  // Pega hora e minuto no fuso local
+  let h = date.getUTCHours();
+  let m = date.getUTCMinutes();
+  return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+}
+
+function formatarData(dataISO) {
+  const date = new Date(dataISO);
+  const dia = String(date.getUTCDate()).padStart(2,'0');
+  const mes = String(date.getUTCMonth()+1).padStart(2,'0');
+  const ano = date.getUTCFullYear();
+  return `${dia}/${mes}/${ano}`;
+}
+
+function exibirEventosHoje(eventos) {
+  const container = document.getElementById('eventos-hoje');
+  container.innerHTML = '';
+
+  if (eventos.length === 0) {
+    container.innerHTML = '<p>Sem eventos para hoje 🎉</p>';
+    return;
+  }
+
+  eventos.forEach(ev => {
+    const card = document.createElement('div');
+    card.classList.add('card-branco');
+
+    card.innerHTML = `
+    <div class="circulo" style="background-color: ${ev.cor || '#708EF1'}"></div>
+    <h3>${ev.titulo}</h3>
+    <p>${formatarData(ev.data_calendario)} - ${formatarHora(ev.hora_calendario)}</p>
+    <div class="lixo" data-id="${ev.id_calendario}">
+        <img src="../img/image.png" alt="Excluir">
+      </div>
+
+  `;
+
+    container.appendChild(card);
+    card.querySelector('.lixo').addEventListener('click', async (e) => {
+      const id = e.currentTarget.dataset.id;
+      if(confirm('Deseja realmente excluir este evento?')) {
+        try {
+          const response = await fetch(`http://localhost:3030/v1/sosbaby/calender/${id}`, {
+            method: 'DELETE'
+          });
+
+          const data = await response.json();
+
+          if(response.ok){
+            alert('Evento excluído com sucesso!');
+            listarEventosDoDiaAtual(); // Atualiza os cards
+          } else {
+            alert('Erro ao excluir evento: ' + data.message);
+          }
+        } catch (error) {
+          console.error('Erro ao excluir:', error);
+          alert('Erro interno ao excluir evento');
+        }
+      }
+    });
+  });
+}
+
+
+listarEventosDoDiaAtual();
+
+
+function marcarDiasComEventos(eventos) {
+  const diasDoMes = document.querySelectorAll('.dia');
+
+  // Cria um mapa com datas e todos os eventos daquele dia
+  const eventosPorData = {};
+
+  eventos.forEach(ev => {
+    const data = ev.data_calendario.split('T')[0];
+    if (!eventosPorData[data]) eventosPorData[data] = [];
+    eventosPorData[data].push(ev);
+  });
+
+  diasDoMes.forEach(dia => {
+    const dataDia = dia.getAttribute('data-data'); 
+
+    if (eventosPorData[dataDia]) {
+      // Adiciona o ponto no dia
+      const ponto = document.createElement('span');
+      ponto.classList.add('ponto-evento');
+      dia.appendChild(ponto);
+
+      // Cria o tooltip
+      const tooltip = document.createElement('div');
+      tooltip.classList.add('tooltip');
+
+      // Monta o texto do tooltip com todos os eventos daquele dia
+      const textoEventos = eventosPorData[dataDia].map(ev => {
+        const hora = formatarHora(ev.hora_calendario);
+        return `${ev.titulo} - ${hora}`;
+      }).join('\n');
+
+      tooltip.textContent = textoEventos;
+      dia.appendChild(tooltip);
+    }
+  });
+}
+
+document.querySelectorAll('.lixo').forEach(lixo => {
+  lixo.addEventListener('click', async (e) => {
+    const id = e.currentTarget.dataset.id;
+    if(confirm('Deseja realmente excluir este evento?')) {
+      try {
+        const response = await fetch(`http://localhost:3030/v1/sosbaby/calender/${id}`, {
+          method: 'DELETE'
+        });
+
+        const data = await response.json();
+
+        if(response.ok){
+          alert('Evento excluído com sucesso!');
+          listarEventosDoDiaAtual(); // Atualiza os cards
+        } else {
+          alert('Erro ao excluir evento: ' + data.message);
+        }
+      } catch (error) {
+        console.error('Erro ao excluir:', error);
+        alert('Erro interno ao excluir evento');
+      }
+    }
+  });
+});
+

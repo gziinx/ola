@@ -133,6 +133,7 @@ main{
 .card-branco {
   background-color: #fff;
   border-radius: 20px;
+  margin-bottom: 15px;
   padding: 10px 15px;
   display: flex;
   align-items: center;
@@ -261,7 +262,7 @@ padding: 5px 10px;
 font-size: 14px;
 color: #0c0c0c;
 cursor: text;
-width: 90px;
+width: 95px;
 text-align: center;
 }
 
@@ -458,6 +459,34 @@ color: #333;
 
 .color-buttons button:hover {
 transform: scale(1.05);
+}
+
+.ponto-evento {
+  display: block;
+  width: 6px;
+  height: 6px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+}
+
+.tooltip {
+  position: absolute;
+  background: #333;
+  color: #fff;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.dia:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
 }
 
 
