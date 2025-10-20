@@ -462,34 +462,61 @@ transform: scale(1.05);
 }
 
 .ponto-evento {
-  display: block;
-  width: 6px;
-  height: 6px;
-  background-color: red;
+  width: 7px;
+  height: 7px;
+  background-color: #4a6ef5;
   border-radius: 50%;
+  display: inline-block;
+  margin-top: 4px;
+  margin-left: 4px;
+}
+#tooltip-global-container {
   position: absolute;
-  bottom: 4px;
-  right: 4px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  pointer-events: none; /* Mantém não clicável */
+  z-index: 9999;
 }
 
 .tooltip {
-  position: absolute;
-  background: #333;
-  color: #fff;
-  padding: 6px 8px;
-  border-radius: 6px;
-  font-size: 12px;
-  visibility: hidden;
+  position: absolute; /* já está */
+  display: none;      /* começa escondido */
   opacity: 0;
-  transition: 0.2s;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  background-color: #fff;
+  border: 2px solid #4a6ef5;
+  border-radius: 10px;
+  padding: 8px 12px;
+  min-width: 200px;
+  max-width: 250px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  pointer-events: none;
 }
-
-.dia:hover .tooltip {
-  visibility: visible;
+.tooltip.show {
+  display: block;
   opacity: 1;
+  transform: translateY(0);
 }
 
+/* Cada evento dentro do tooltip */
+.tooltip-evento {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
 
+.tooltip-evento:last-child {
+  margin-bottom: 0;
+}
+
+.tooltip-evento .circulo {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;
