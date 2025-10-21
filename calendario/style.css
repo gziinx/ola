@@ -186,13 +186,20 @@ header{
   font-size: 1.3rem;
   transition: all 0.3s ease;
   background: transparent;
+  
+  /* CORREÇÃO PRINCIPAL: Usar Flexbox para alinhar o conteúdo */
+  display: flex;
+  flex-direction: column; /* Coloca o número e o ponto um abaixo do outro inicialmente */
+  align-items: center; /* Centraliza horizontalmente */
+  justify-content: center; /* Centraliza verticalmente */
+  
+  /* Ajuste de padding/tamanho se necessário, se o padding original for muito grande */
+  padding: 10px 0; /* Reduz o padding para ter mais controle */
+  min-height: 50px; /* Garante uma altura mínima */
 }
 
 /* Hover respeitando a cor original */
-.days div:hover {
-  transform: scale(1.1);
-  filter: brightness(1.2);
-}
+
 
 /* Dia atual */
 .days .today {
@@ -203,6 +210,21 @@ header{
   box-shadow: 0 0 10px rgba(255,255,255,0.7);
 }
 
+
+/* NOVO: Estilo para o dia ATUALMENTE SELECIONADO/CLICADO */
+.days div.selected-day {
+  /* Opcional: Adicione um fundo diferente ou uma borda para indicar que ele está ativo */
+  background: rgba(74, 110, 245, 0.2); /* Azul suave */
+  border: 1px solid #4a6ef5;
+  transform: scale(1.05); /* Pequeno destaque */
+}
+
+/* Garante que o dia atual (hoje) e o dia selecionado se misturem bem */
+.days .hoje.selected-day {
+   /* Mantém o estilo de hoje, mas adiciona a borda do selecionado */
+   border: 2px solid #4a6ef5; 
+   box-shadow: 0 0 10px rgba(74, 110, 245, 0.7);
+}
 /* Animação ao mudar mês */
 .fade {
   opacity: 0;
@@ -404,9 +426,13 @@ transition: transform 0.2s ease;
 
 .cor:hover {
 transform: scale(1.1);
-border-color: #fff;
+border-color: #999999;
 }
-
+.cor.selecionada {
+  border: 2px solid #fff; 
+  transform: scale(1.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); 
+}
 .laranja { background: #FFA63D; }
 .ciano { background: #33D8FF; }
 .roxo { background: #B83FFF; }
@@ -565,11 +591,16 @@ transform: scale(1.05);
 .ponto-evento {
   width: 7px;
   height: 7px;
-  background-color: #4a6ef5;
+  background-color: #ff0000;
   border-radius: 50%;
-  display: inline-block;
-  margin-top: 4px;
-  margin-left: 4px;
+  
+  /* CORREÇÃO: Remova o inline-block, margin-top e margin-left antigos */
+  /* display: inline-block; */
+  /* margin-top: 4px; */
+  /* margin-left: 4px; */
+  
+  /* Novo posicionamento: Use margin-top para criar espaço do número */
+  margin-top: 5px; /* Adiciona um pequeno espaço entre o número e o ponto */
 }
 #tooltip-global-container {
   position: absolute;
@@ -582,41 +613,86 @@ transform: scale(1.05);
 }
 
 .tooltip {
-  position: absolute; /* já está */
-  display: none;      /* começa escondido */
-  opacity: 0;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  background-color: #fff;
-  border: 2px solid #4a6ef5;
-  border-radius: 10px;
-  padding: 8px 12px;
-  min-width: 200px;
-  max-width: 250px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  pointer-events: none;
-}
-.tooltip.show {
-  display: block;
-  opacity: 1;
-  transform: translateY(0);
+    /* Novo Fundo Escuro */
+    background-color: #2c3e50; /* Cinza/Azul escuro, elegante */
+    color: #ecf0f1; /* Texto claro */
+    
+    border: none; /* Remove a borda azul */
+    border-radius: 8px; /* Borda mais suave */
+    padding: 10px 15px; /* Mais espaço interno */
+    min-width: 200px;
+    max-width: 250px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Sombra mais profunda e escura */
+    
+    /* Configurações de animação (Manter o essencial) */
+    position: absolute;
+    display: none;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    pointer-events: none;
+    align-items: center;
+    
+    /* Adicionar um pequeno triângulo (opcional, mas comum em tooltips) */
+    position: relative; 
 }
 
-/* Cada evento dentro do tooltip */
+/* Triângulo na parte inferior do tooltip (opcional) */
+.tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #2c3e50 transparent transparent transparent; /* Mesma cor de fundo */
+}
+
+
+.tooltip.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Estilo para cada evento dentro do tooltip */
 .tooltip-evento {
-  display: flex;
-  align-items: center;
-  margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    padding: 3px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separador sutil */
 }
 
 .tooltip-evento:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: none;
 }
 
 .tooltip-evento .circulo {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  margin-right: 6px;
+    width: 12px; /* Garante que o círculo tenha tamanho fixo */
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Borda clara */
+}
+
+.tooltip-evento h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 0;
+    flex-grow: 1; /* Permite que o título ocupe o espaço */
+    color: #ecf0f1;
+}
+
+.tooltip-evento p {
+    font-size: 0.75rem;
+    font-weight: 300;
+    margin: 0;
+    color: #bdc3c7; /* Cor mais suave para a hora */
+    white-space: nowrap; /* Impede que a hora quebre linha */
+    margin-left: 10px;
 }
 @keyframes fadeIn {
   from {

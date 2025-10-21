@@ -10,13 +10,20 @@ let todosEventos = []; // guarda todos os eventos do backend
 
 async function buscarEventos() {
   try {
+
     const response = await fetch('http://localhost:3030/v1/sosbaby/calenders');
     const data = await response.json();
 
     if (response.ok && Array.isArray(data.dateCalender)) {
-      todosEventos = data.dateCalender; // salva globalmente
+      todosEventos = data.dateCalender;
       marcarDiasComEventos(todosEventos);
-    } else {
+
+      // NOVO: Carregar os eventos do dia atual no Card Azul por padrão
+      const hoje = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+      const eventosHoje = todosEventos.filter(evento => evento.data_calendario.split('T')[0] === hoje);
+      exibirEventosNoCardAzul(eventosHoje, hoje);
+    }
+    else {
       console.error('Nenhum evento encontrado');
     }
   } catch (error) {
@@ -77,23 +84,23 @@ function renderCalendar(direction) {
 
     // Adiciona o dia no calendário
     daysContainer.appendChild(dayElement);
-}
-    marcarDiasComEventos(todosEventos);
+  }
+  marcarDiasComEventos(todosEventos);
   // Animação opcional
   if (direction) {
     daysContainer.classList.add("fade");
     setTimeout(() => daysContainer.classList.remove("fade"), 200);
-  
-}
+
+  }
 }
 // Marcar dias com eventos (mantém, caso seja usado por outras partes)
 
 
-  
 
-  
 
-  // Marcar os dias com eventos
+
+
+// Marcar os dias com eventos
 
 
 prevBtn.addEventListener("click", () => { date.setMonth(date.getMonth() - 1); renderCalendar("prev"); });
@@ -293,43 +300,71 @@ function formatarData(dataISO) {
   return `${dia}/${mes}/${ano}`;
 }
 
-function exibirEventosHoje(eventos) {
-  const container = document.getElementById('eventos-hoje');
-  container.innerHTML = '';
+// Localize onde você define a função exibirEventosHoje e substitua por esta:
+/**
+ * Exibe a lista de eventos no Card Azul (Container Lateral).
+ * @param {Array<Object>} eventos - Lista de eventos para a data.
+ * @param {string} dataSelecionada - A data YYYY-MM-DD.
+ */
+function exibirEventosNoCardAzul(eventos, dataSelecionada) {
+  const container = document.getElementById('eventos-hoje'); // Assumindo este é o container dentro do Card Azul
+  const dataFormatada = formatarData(dataSelecionada + 'T00:00:00Z'); // Formata a data para DD/MM/AAAA
+
+  container.innerHTML = ''; // Limpa o conteúdo anterior
+
+  // Atualiza o título do card azul (Assumindo que o h2 dentro de .card-azul tem um id)
+  const tituloCard = document.querySelector('.card-azul h2');
+  if (tituloCard) {
+    tituloCard.textContent = `Eventos para ${dataFormatada}`;
+  }
 
   if (eventos.length === 0) {
-    container.innerHTML = '<p>Sem eventos para hoje 🎉</p>';
+    container.innerHTML = '<p style="text-align: center; color: #0c0c0c;">Sem eventos para esta data 🎉</p>';
     return;
   }
+
+  eventos.sort((a, b) => {
+    // ... (Sua lógica de ordenação por hora, que está correta) ...
+    const dateA = new Date(a.hora_calendario);
+    const dateB = new Date(b.hora_calendario);
+    const minutosA = dateA.getUTCHours() * 60 + dateA.getUTCMinutes();
+    const minutosB = dateB.getUTCHours() * 60 + dateB.getUTCMinutes();
+    return minutosA - minutosB;
+  });
 
   eventos.forEach(ev => {
     const card = document.createElement('div');
     card.classList.add('card-branco');
 
     card.innerHTML = `
-    <div class="circulo" style="background-color: ${ev.cor || '#708EF1'}"></div>
-    <h3>${ev.titulo}</h3>
-    <p>${formatarData(ev.data_calendario)} - ${formatarHora(ev.hora_calendario)}</p>
-    <div class="lixo" data-id="${ev.id_calendario}">
-        <img src="../img/image.png" alt="Excluir">
+      <div class="circulo" style="background-color: ${ev.cor || '#708EF1'}"></div>
+      <div class="conteudo">
+          <h3>${ev.titulo}</h3>
+          <p>${formatarData(ev.data_calendario)} - ${formatarHora(ev.hora_calendario)}</p>
       </div>
-
-  `;
+      <div class="lixo" data-id="${ev.id_calendario}">
+          <img src="../img/image.png" alt="Excluir">
+      </div>`;
 
     container.appendChild(card);
+    // ... (Sua lógica de exclusão, mantida) ...
     card.querySelector('.lixo').addEventListener('click', async (e) => {
       const id = e.currentTarget.dataset.id;
       if (confirm('Deseja realmente excluir este evento?')) {
         try {
-          const response = await fetch(`http://localhost:3030/v1/sosbaby/calender/${id}`, {
-            method: 'DELETE'
-          });
-
+          const response = await fetch(`http://localhost:3030/v1/sosbaby/calender/${id}`, { method: 'DELETE' });
           const data = await response.json();
 
           if (response.ok) {
             alert('Evento excluído com sucesso!');
-            listarEventosDoDiaAtual(); // Atualiza os cards
+
+            // Após a exclusão, recarregamos os eventos e atualizamos o card
+            await buscarEventos(); // Recarrega todos os eventos
+            const dataExcluida = ev.data_calendario.split('T')[0];
+            const eventosAtualizados = todosEventos.filter(e => e.data_calendario.split('T')[0] === dataExcluida);
+            exibirEventosNoCardAzul(eventosAtualizados, dataExcluida);
+            renderCalendar(); // Redesenha o calendário para remover o ponto, se necessário
+
           } else {
             alert('Erro ao excluir evento: ' + data.message);
           }
@@ -343,7 +378,7 @@ function exibirEventosHoje(eventos) {
 }
 
 
-listarEventosDoDiaAtual();
+
 
 
 function marcarDiasComEventos(eventos) {
@@ -370,41 +405,92 @@ function marcarDiasComEventos(eventos) {
     const dataDia = dia.getAttribute('data-data');
 
     if (eventosPorData[dataDia]) {
+      let eventosDoDia = eventosPorData[dataDia];
+
+      // 1. ORDENAR OS EVENTOS PELA HORA
+      eventosDoDia.sort((a, b) => {
+        // Converte as strings de hora em objetos Date
+        const dateA = new Date(a.hora_calendario);
+        const dateB = new Date(b.hora_calendario);
+
+        // Calcula o valor em minutos apenas da hora/minuto em UTC
+        const minutosA = dateA.getUTCHours() * 60 + dateA.getUTCMinutes();
+        const minutosB = dateB.getUTCHours() * 60 + dateB.getUTCMinutes();
+
+        return minutosA - minutosB; // Ordena crescentemente (mais cedo -> mais tarde)
+      });
       // Ponto sempre visível
       const ponto = document.createElement('span');
       ponto.classList.add('ponto-evento');
       dia.appendChild(ponto);
+      dia.classList.add('has-event');
+
+      // NOVO: Adiciona o evento de clique
+      dia.addEventListener('click', () => {
+        // 1. Carrega os eventos do dia no Card Azul
+        exibirEventosNoCardAzul(eventosDoDia, dataDia);
+
+        // 2. Remove o destaque (classe 'selected-day') de todos os dias
+        document.querySelectorAll('.dia').forEach(d => d.classList.remove('selected-day'));
+
+        // 3. Adiciona o destaque ao dia clicado
+        dia.classList.add('selected-day');
+      });
 
       // Criar tooltip no container global
       const tooltip = document.createElement('div');
       tooltip.classList.add('tooltip');
-      tooltip.style.position = "absolute"; // posição fixa relativa à tela
-      tooltip.style.display = "none"; // começa escondido
-      tooltip.innerHTML = eventosPorData[dataDia].map(ev => {
+      // Mantendo a posição absoluta para o container global (sem precisar de top/left inicial aqui)
+      tooltip.innerHTML = eventosDoDia.map(ev => {
         const hora = formatarHora(ev.hora_calendario);
         return `<div class="tooltip-evento">
-                  <div class="circulo" style="background-color:${ev.cor || '#708EF1'}"></div>
-                  <div>
-                    <h4>${ev.titulo}</h4>
-                    <p>${hora}</p>
-                  </div>
-                </div>`;
+                      <div class="circulo" style="background-color:${ev.cor || '#708EF1'}"></div>
+                      <h4 class="titulo-tooltip">${ev.titulo}</h4>
+                      <p class="hora-tooltip">${hora}</p>
+                  </div>`;
       }).join("");
 
       tooltipContainer.appendChild(tooltip);
 
       // Mostrar/ocultar tooltip no hover
       dia.addEventListener('mouseenter', () => {
-  tooltip.classList.add("show");
-  const rect = dia.getBoundingClientRect();
-  tooltip.style.top = `${rect.top + window.scrollY - tooltip.offsetHeight - 8}px`;
-  tooltip.style.left = `${rect.left + window.scrollX + rect.width/2 - tooltip.offsetWidth/2}px`;
-});
-dia.addEventListener('mouseleave', () => {
-  tooltip.classList.remove("show");
-}); 
+        // 1. Garante que o display está block para calcular o tamanho
+        tooltip.style.display = "block";
+
+        // 2. Calcula e posiciona
+        const rect = dia.getBoundingClientRect();
+
+        // Posicionamento acima do dia, centralizado horizontalmente
+        const tooltipTop = rect.top + window.scrollY - tooltip.offsetHeight - 8;
+        const tooltipLeft = rect.left + window.scrollX + rect.width / 2 - tooltip.offsetWidth / 2;
+
+        // Limite direito da tela
+        const screenWidth = document.documentElement.clientWidth;
+        const safeLeft = Math.max(10, Math.min(tooltipLeft, screenWidth - tooltip.offsetWidth - 10)); // Garante margem de 10px
+
+        tooltip.style.top = `${tooltipTop}px`;
+        tooltip.style.left = `${safeLeft}px`;
+
+        // 3. Adiciona a classe 'show' para a animação de opacidade/transform
+        setTimeout(() => { // Pequeno delay para garantir que o posicionamento já foi aplicado
+          tooltip.classList.add("show");
+        }, 10);
+      });
+
+      dia.addEventListener('mouseleave', () => {
+        // 1. Remove a classe 'show'
+        tooltip.classList.remove("show");
+
+        // 2. Após a transição de opacidade/transform, oculta completamente
+        setTimeout(() => {
+          if (!tooltip.classList.contains("show")) { // Checa se não houve mouseenter logo em seguida
+            tooltip.style.display = "none";
+          }
+        }, 200); // 200ms é a duração da transição no seu CSS
+      });
     }
   });
+  // ---------------------- FIM DA CORREÇÃO ----------------------
 }
 
 document.querySelectorAll('.lixo').forEach(lixo => {

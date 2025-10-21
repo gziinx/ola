@@ -1,12 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">k
-    <title>chat</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="https://lumi.new/lumi.ing/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Médico - Interface de Comunicação</title>
+    <meta name="description" content="Interface de chat para comunicação médica">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS para simular os ícones, ou você pode usar SVG's inline */
+        .icon { width: 20px; height: 20px; display: inline-block; fill: currentColor; }
+        .icon-small { width: 8px; height: 8px; }
+    </style>
 </head>
 <body>
-    
+    <div id="app" class="h-screen bg-black p-4 flex items-center justify-center">
+        <div class="main-container">
+            <div id="sidebar" class="sidebar">
+                <div class="sidebar-header p-6 border-b border-gray-200">
+                    <div class="flex items-center gap-4 mb-4">
+                        <button class="icon-button">
+                        </button>
+                        <div class="search-container">
+                            <div class="icon-search-container">
+                            </div>
+                            <input 
+                                type="text" 
+                                placeholder="Buscar contatos..."
+                                class="search-input"
+                            />
+                        </div>
+                    </div>
+                </div>
+            
+                <div id="contact-list" class="contact-list-area">
+                </div>
+            </div>
+
+            <div class="chat-main-area">
+                <div id="chat-content-placeholder" class="flex-1 flex items-center justify-center">
+                    <p class="text-placeholder">Selecione um contato para iniciar a conversa</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
