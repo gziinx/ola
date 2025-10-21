@@ -10,7 +10,7 @@ document.getElementById('form').addEventListener('submit', async function (event
        
                                         //10.107.144.16
                                         //https://projeto-queropets-2025-1.onrender.com/v1/controle-pet/usuario
-        const userResponse = await fetch('http://localhost:3030/v1/user', {
+        const userResponse = await fetch('http://localhost:3030/v1/sosbaby/user/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -23,7 +23,7 @@ document.getElementById('form').addEventListener('submit', async function (event
 
         if (userResponse.ok) {
             alert('Usuário logado com sucesso!')
-            window.location.href = '../index.html'
+            window.location.href = '../perfilpessoa/perfilpessoa.html'
 
         } else {
             const errorData = await userResponse.json()

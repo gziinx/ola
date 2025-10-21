@@ -15,7 +15,7 @@ document.getElementById('cad').addEventListener('submit', async function (event)
        
                                         //10.107.144.16
                                         //https://projeto-queropets-2025-1.onrender.com/v1/controle-pet/usuario
-        const userResponse = await fetch('http://localhost:3030/v1/user', {
+        const userResponse = await fetch('http://localhost:3030/v1/sosbaby/user/cadastro', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

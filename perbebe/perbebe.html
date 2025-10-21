@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style1.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+    <title>Perfil do Bebê</title>
+</head>
+
+<body>
+    <header>
+        <nav class="menu">
+            <a href="#">Home</a>
+            <a href="#">Calendário</a>
+            <a href="#">Dicas</a>
+            <a href="#">Consultas</a>
+            <a href="#">Rotina</a>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <div class="header">
+            <img src="../img/back.png" onclick="window.location.href='../perbebe/perbebe.html'" width="20px" height="auto" alt="">
+            <h2>Perfil do Bebê</h2>
+        </div>
+
+        <div class="perfil">
+            <h3 id="nomeBebeH3">NOME/APELIDO BEBÊ</h3>
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="foto perfil">
+            <br>
+            <button>✏️ Editar</button>
+        </div>
+
+        <div class="campos">
+            <div class="campo campo-full">
+                <label>Nome completo</label>
+                <input id="inputNomeBebe" type="text" placeholder="ROBERTO" required>
+            </div>
+
+            <div class="campo campo-full">
+                <label>Data de Nascimento</label>
+                <input id="inputNascimentoBebe" type="date" placeholder="01/04/1998" required>
+            </div>
+
+            <div class="campo">
+                <label>CPF (opcional)</label>
+                <input id="inputCpfBebe" type="text" placeholder="432.065.774-01">
+            </div>
+
+            <div class="campo">
+                <label>Sexo</label>
+                <input id="inputSexoBebe" type="text" placeholder="Masculino" required>
+            </div>
+
+            <div class="campo campo-full">
+                <label>Nacionalidade</label>
+                <input id="inputNacionalidadeBebe" type="text" placeholder="Brasileiro" required>
+            </div>
+
+            <div class="campo">
+                <label>Peso (kg)</label>
+                <input id="inputPesoBebe" type="text" placeholder="3,2">
+            </div>
+
+            <div class="campo">
+                <label>Altura (cm)</label>
+                <input id="inputAlturaBebe" type="text" placeholder="50" required>
+            </div>
+
+            <div class="campo campo-full">
+                <label>Cartão SUS/Convênio</label>
+                <input id="inputCartaoBebe" type="text" placeholder="3704 5563 7184 423" required>
+            </div>
+
+            <div class="campo campo-full">
+                <label>Tipo Sanguíneo</label>
+                <input id="inputSangueBebe" type="text" placeholder="Tipo: A" required>
+            </div>
+
+            <div class="campo campo-full">
+                <label>Certidão de Nascimento (Número)</label>
+                <input id="inputCertidaoBebe" type="text" placeholder="43637-935-09" required>
+            </div>
+        </div>
+
+        <button class="bore" type="submit">Salvar</button>
+    </div>
+
+    <script src="/perfilBebe.js"></script>
+</body>
+
+</html>
