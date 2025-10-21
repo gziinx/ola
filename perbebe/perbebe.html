@@ -23,15 +23,16 @@
     <div class="container">
 
         <div class="header">
-            <img src="../img/back.png" onclick="window.location.href='../perbebe/perbebe.html'" width="20px" height="auto" alt="">
+            <img src="../img/back.png" onclick="window.location.href='../index.html'" width="20px" height="auto" alt="">
             <h2>Perfil do Bebê</h2>
         </div>
 
         <div class="perfil">
-            <h3 id="nomeBebeH3">NOME/APELIDO BEBÊ</h3>
-            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="foto perfil">
+            <h3>NOME/APELIDO BEBE</h3>
+            <img id="fotoPerfil" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="foto perfil">
             <br>
-            <button>✏️ Editar</button>
+            <button id="btnTrocarFoto">📷 Trocar foto</button>
+            <input type="file" id="inputFoto" accept="image/*" style="display: none;">
         </div>
 
         <div class="campos">
@@ -53,11 +54,6 @@
             <div class="campo">
                 <label>Sexo</label>
                 <input id="inputSexoBebe" type="text" placeholder="Masculino" required>
-            </div>
-
-            <div class="campo campo-full">
-                <label>Nacionalidade</label>
-                <input id="inputNacionalidadeBebe" type="text" placeholder="Brasileiro" required>
             </div>
 
             <div class="campo">

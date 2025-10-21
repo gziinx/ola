@@ -1,9 +1,15 @@
+// ======== SELETORES ========
 const nomeH3 = document.querySelector('.perfil h3');
+const imgPerfil = document.querySelector('.perfil img');
 const inputNome = document.querySelector('input[placeholder="ROBERTO"]');
-const inputNascimento = document.querySelector('input[placeholder="01/04/1998"]');
+const inputEmail = document.querySelector('input[placeholder="pediatra@gmail.com"]');
+const inputCRM = document.querySelector('input[placeholder="00000000-0/BR"]');
 const inputTelefone = document.querySelector('input[placeholder="(11) 99132-3444"]');
-const inputEmail = document.querySelector('input[placeholder="feliccc31@gmail.com"]');
-const inputCartao = document.querySelector('input[placeholder="3704 5563 7184 423"]');
+const inputNascimento = document.querySelector('input[placeholder="00/00/0000"]');
+
+// Inputs para troca de foto
+const botaoTrocar = document.getElementById('btnTrocarFoto');
+const inputFoto = document.getElementById('inputFoto');
 
 // ======== FUNÇÃO PARA FORMATAR DATA ========
 function formatDateBR(isoDate) {
@@ -14,21 +20,25 @@ function formatDateBR(isoDate) {
     return `${day}/${month}/${year}`;
 }
 
-// ======== CARREGAR PERFIL DO RESPONSÁVEL ========
+// ======== FUNÇÃO PARA CARREGAR PERFIL ========
 async function carregarPerfil() {
     try {
-        const res = await fetch(`http://localhost:3030/v1/sosbaby/resp/2`);
+        const res = await fetch('http://localhost:3030/v1/sosbaby/resp/2');
         const data = await res.json();
 
         if (res.ok && data.responsavel) {
             const resp = data.responsavel[0];
 
+            // Atualiza HTML
             nomeH3.textContent = resp.nome;
+            imgPerfil.src = resp.foto_perfil || 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png';
+
+            // Atualiza inputs
             inputNome.value = resp.nome;
-            inputNascimento.value = formatDateBR(resp.data_nascimento);
-            inputTelefone.value = resp.telefone;
             inputEmail.value = (resp.usuario && resp.usuario[0] && resp.usuario[0].email) || '';
-            inputCartao.value = resp.cartao_medico;
+            inputCRM.value = resp.cartao_medico || '';
+            inputTelefone.value = resp.telefone || '';
+            inputNascimento.value = formatDateBR(resp.data_nascimento);
         } else {
             console.error('Responsável não encontrado');
         }
@@ -37,19 +47,14 @@ async function carregarPerfil() {
     }
 }
 
+// Carrega o perfil ao abrir a página
 carregarPerfil();
 
 // ======== TROCAR FOTO DE PERFIL ========
-const botaoTrocar = document.getElementById('btnTrocarFoto');
-const inputFoto = document.getElementById('inputFoto');
-const imgPerfil = document.getElementById('fotoPerfil');
-
-// Quando clicar no botão, abre o seletor de arquivos
 botaoTrocar.addEventListener('click', () => {
     inputFoto.click();
 });
 
-// Quando escolher uma imagem, atualiza a foto na tela
 inputFoto.addEventListener('change', (event) => {
     const arquivo = event.target.files[0];
     if (arquivo) {

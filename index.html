@@ -6,9 +6,8 @@
     <link rel="stylesheet" href="/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
-    <title>o</title>
+    <title>Perfil</title>
 </head>
-
 
 <body>
     <header>
@@ -20,20 +19,22 @@
             <a href="#">Rotina</a>
         </nav>
     </header>
+
     <div class="container">
 
         <div class="header">
             <h2>Perfil do Responsável</h2>
-            <div class="logobebe" onclick="window.location.href='/bebe.html'">
+            <div class="logobebe" onclick="window.location.href='./perbebe/perbebe.html'">
                 <img src="/img/bebe.png" alt="">
             </div>
         </div>
 
         <div class="perfil">
             <h3>NOME/APELIDO RESPONSÁVEL</h3>
-            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="foto perfil">
+            <img id="fotoPerfil" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="foto perfil">
             <br>
-            <button>✏️ Editar</button>
+            <button id="btnTrocarFoto">📷 Trocar foto</button>
+            <input type="file" id="inputFoto" accept="image/*" style="display: none;">
         </div>
 
         <div class="campos">
@@ -67,8 +68,10 @@
                 <input type="text" placeholder="3704 5563 7184 423" readonly>
             </div>
         </div>
-        <button class="bore" type="submit"> Salvar</button>
+
+        <button class="bore" type="submit">Salvar</button>
     </div>
+
     <script src="/perfil.js"></script>
 </body>
 

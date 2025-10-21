@@ -5,37 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Calendário Moderno</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
+  <header>
+    <nav class="nav">
+      <div class="nav-left">
+        <img src="../img/logoo.png" alt="SOS Baby" class="logu">
+      </div>
+
+      <div class="nav-center">
+        <a href="#">Home</a>
+        <a href="#">Calendário</a>
+        <a href="#">Dicas</a>
+        <a href="#">Consultas</a>
+        <a href="#">Rotina</a>
+      </div>
+
+      <div class="nav-right">
+        <i data-lucide="bell" class="icon"></i>
+        <i data-lucide="user" class="icon user-icon" ></i>
+      </div>
+    </nav>
+  </header>
   <main>
     <div class="card-azul">
       <h2>Hoje</h2>
-      <div class="card-branco">
-        <div class="circulo"></div>
-        <h3>Consulta com o pediatra</h3>
-        <p>12/09 - 08:00 AM</p>
-        <div class="lixo">
-          <img src="../img/image.png" alt="">
-        </div>
-      </div>
-      <div class="card-branco">
-        <div class="circulo"></div>
-        <h3>Consulta com o pediatra</h3>
-        <p>12/09 - 08:00 AM</p>
-        <div class="lixo">
-          <img src="../img/image.png" alt="">
-        </div>
-      </div>
-      <div class="card-branco">
-        <div class="circulo"></div>
-        <h3>Consulta com o pediatra</h3>
-        <p>12/09 - 08:00 AM</p>
-        <div class="lixo">
-          <img src="../img/image.png" alt="">
-        </div>
-      </div>
+
+      <div id="eventos-hoje"></div>
+
       <button class="botao-mais">+</button>
     </div>
+
+    <!-- MODAL PRINCIPAL -->
     <div class="modal" id="modal">
       <div class="modal-content">
         <h2>Data e Horário</h2>
@@ -47,25 +50,23 @@
           </div>
           <input type="time" class="hora-input" placeholder="12:00">
         </div>
-    
+
         <h2>Cor</h2>
-        <div class="cores">
+        <div class="cores" id="cores-container">
           <div class="cor laranja"></div>
           <div class="cor ciano"></div>
           <div class="cor roxo"></div>
           <div class="cor vermelho"></div>
           <div class="cor verde"></div>
-          <div class="cor mais">+</div>
+          <div class="cor mais" id="adicionar-cor">+</div>
         </div>
 
-        
-    
         <h2>Título</h2>
         <input type="text" placeholder="Escreva o título" />
-    
+
         <h2>Nota</h2>
         <textarea placeholder="Descreva o evento"></textarea>
-    
+
         <div class="rodape">
           <div class="alarme">
             <label>Alarme</label>
@@ -75,6 +76,8 @@
         </div>
       </div>
     </div>
+
+    <!-- MODAL DE COR -->
     <div class="color-modal" id="colorModal">
       <div class="color-modal-content">
         <h3>Escolha uma cor</h3>
@@ -85,14 +88,15 @@
         </div>
       </div>
     </div>
-    
+<div id="tooltip-global-container"></div>
+    <!-- CALENDÁRIO --> 
     <div class="calendar">
       <div class="header">
         <button id="prev" class="nav-btn">←</button>
         <h2 id="month-year">Outubro 2025</h2>
         <button id="next" class="nav-btn">→</button>
       </div>
-  
+
       <div class="weekdays" id="weekdays">
         <div class="weekend">Dom</div>
         <div class="weekday">Seg</div>
@@ -102,11 +106,13 @@
         <div class="weekday">Sex</div>
         <div class="weekend">Sáb</div>
       </div>
-  
+
       <div class="days" id="days"></div>
     </div>
   </main>
-
+  <script>
+    lucide.createIcons();
+  </script>
   <script src="script.js"></script>
 </body>
 </html>

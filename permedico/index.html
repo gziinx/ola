@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <title>o</title>
+</head>
+
+
+<body>
+    <header>
+        <nav class="nav">
+          <div class="nav-left">
+            <img src="../img/logoo.png" alt="SOS Baby" class="logu">
+          </div>
+    
+          <div class="nav-center">
+            <a href="#">Home</a>
+            <a href="#">Calendário</a>
+            <a href="#">Dicas</a>
+            <a href="#">Consultas</a>
+            <a href="#">Rotina</a>
+          </div>
+    
+          <div class="nav-right">
+            <i data-lucide="bell" class="icon"></i>
+            <i data-lucide="user" class="icon user-icon" ></i>
+          </div>
+        </nav>
+      </header>
+    <div class="container">
+
+        <div class="header">
+            <img src="../img/back.png" onclick="window.location.href='../index.html'" width="20px" height="auto" alt="">
+            <h2>Perfil do Responsável</h2>
+        </div>
+
+        <div class="perfil">
+            <h3>NOME/APELIDO MÉDICO</h3>
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="foto perfil">
+            <br>
+            
+            <button id="btnTrocarFoto">📷 Trocar foto</button>
+            <input type="file" id="inputFoto" accept="image/*" style="display: none;">
+        </div>
+
+        <div class="campos">
+            <div class="campo campo-full">
+                <label>Nome completo</label>
+                <input type="text" placeholder="ROBERTO" readonly>
+            </div>
+
+            <div class="campo campo-full">
+                <label>E-mail</label>
+                <input type="text" placeholder="pediatra@gmail.com" readonly>
+            </div>
+
+
+            <div class="campo">
+                <label>CRM</label>
+                <input type="text" placeholder="00000000-0/BR" required>
+            </div>
+
+            <div class="campo">
+                <label>Telefone</label>
+                <input type="text" placeholder="(11) 99132-3444" readonly>
+            </div>
+            <div class="campo campo-full">
+                <label>Data de Nascimento</label>
+                <input type="text" placeholder="00/00/0000" readonly>
+            </div>
+
+        </div>
+        <button class="bore" type="submit"> Salvar</button>
+    </div>
+    <script>
+        lucide.createIcons();
+    </script>
+    <script src="./perfilmedico.js"></script>
+</body>
+
+</html>

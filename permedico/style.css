@@ -3,127 +3,122 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Krona One', sans-serif;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 }
 
 body {
-    background-color: #3498db;
+    background-color: #708EF1;
     background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
     padding: 20px;
+    justify-content: center;
 }
-
-.container {
+header{
+    font-family: 'Krona One', sans-serif;
+  }
+  .nav {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background: #f2effd6c;
+    padding: 0 40px;
+    height: 80px;
+    width: 100vw;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+  }
+  
+  /* Lado esquerdo */
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .logu {
     margin-top: 20px;
-    width: 900px;
-    background: #f0e9dc5d;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-}
-.bore{
-
-    margin: 20px auto;
-    width: 180px;
-
->>>>>>> bbbfc23ae246286b8f3884de161ebb7029435919
-    background: url("./img/fundu2.png") no-repeat center center fixed;
-    background-size: cover;
-    font-family: 'Krona One', sans-serif;;
-    height: 100vh;
+    height: 80px;
+    width: auto;
   }
   
-  /* Container principal */
-  .container {
+  /* Links centrais */
+  .nav-center {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 100vh;
-    padding: 0 60px;
+    gap: 35px;
   }
   
-  /* Box da logo */
-  .logo-box {
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    text-align: center;
-  }
-  
-  .logo-box img {
-
-    width: 850px;
-    height: 800px;
-    margin-top: 200px;
-    margin-left: 50px;
-  }
-  
-  .logo-box h1 {
-    font-size: 60px;
-    color: #333;
-    line-height: 1.2;
-  }
-  
-  .logo-box .heart {
-    color: #4A90E2; /* azul igual ao mockup */
-  }
-  
-  /* Card da direita */
-  .card {
-      display: flex ;
-    background: #a7d6ff7c;
-    border: 2px solid #0C69FF;
-    border-radius: 25px;
-    padding: 40px;
-    width: 630px;
-    height: 600px;
-    text-align: center;
-    flex-direction: column;
-    align-items: center;
-    margin-right: 50px;
-  }
-  
-  .card h2 {
-    font-size: 58px;
-    margin-bottom: 30px;
+  .nav-center a {
+    text-decoration: none;
     color: #000;
-  }
-  .card .btn{
-      justify-content: center;
-      align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.2s ease;
   }
   
-  /* Botões */
-  .btn {
-    width: 459px;
-    height: 91px;
-<<<<<<< HEAD
-=======
-}
-
-body {
-    background-color: #3498db;
-    background-size: cover;
+  .nav-center a:hover {
+    color: #4a64f5;
+  }
+  
+  /* Lado direito */
+  .nav-right {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-}
+    gap: 20px;
+  }
+  
+  /* Botão Criar */
+  .btn-criar {
+    background-color: #4a64f5;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .btn-criar:hover {
+    background-color: #3549c7;
+  }
+  
+  /* Ícones */
+  .icon {
+    color: #4a64f5;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .icon:hover {
+    opacity: 0.7;
+  }
+  .user-icon {
+    border: 2px solid #4a64f5;
+    border-radius: 50%;
+    padding: 6px;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+  }
+  .user-icon:hover {
+    background-color: #4a64f5;
+    color: white;
+  }
 
 .container {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
     width: 900px;
-    background: #f0e9dc5d;
+    background: #F2EFFD;
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
@@ -132,13 +127,10 @@ body {
 
     margin: 20px auto;
     width: 180px;
->>>>>>> 4273afc34d8a62c290881e040311971b54053e5b
-=======
->>>>>>> bbbfc23ae246286b8f3884de161ebb7029435919
     padding: 15px;
     font-size: 16px;
     background: #708EF1;
-    color: #000;
+    color: #fff;
     border: 1px solid black;
     border-radius: 30px;
     cursor: pointer;
@@ -167,13 +159,15 @@ body {
 .header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+header img {
+    cursor: pointer;
 }
 
 .header h2 {
     font-size: 18px;
-    margin-bottom: auto;
     margin-left: 30px;
 }
 
@@ -218,7 +212,7 @@ body {
     border: none;
     border-radius: 30px;
     padding: 10px;
-    background: #A4D3DE;
+    background: #fff;
     border: 1px solid #000;
     font-size: 15px;
     color: #636363;
