@@ -6,7 +6,8 @@
   <title>Baby Care - Cuidar é Amar</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
-  <link rel="icon" href="https://lumi.new/lumi.ing/logo.png">
+  
+  <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -26,7 +27,7 @@
         <a href="#">Rotina</a>
       </div>
 
-      <div class="nav-right">
+      <div class="nav-right" >
         <i data-lucide="bell" class="icon"></i>
         <i data-lucide="user" class="icon user-icon" ></i>
       </div>
@@ -34,7 +35,7 @@
   </header>
 
   <!-- Hero -->
-  <section class="hero">
+  <main> <section class="hero">
     <div class="hero-text">
       <h1>CUIDAR É AMAR</h1>
       <p>Descubra como nossos serviços ajudam você a acompanhar cada momento do seu bebê com mais segurança e carinho.</p>
@@ -68,7 +69,40 @@
   </section>
 
   <!-- Calendar -->
-  
+  <section class="calendar-section">
+    <div class="titu">
+      <a>Seu Calendário de Rotinas  </a>
+    </div>
+    <p>Acompanhe consultas, vacinas e lembretes importantes para o bem- <br>
+      estar do seu bebê.
+    </p>
+    <div id="tooltip-global-container"></div>
+    <!-- CALENDÁRIO --> 
+    <div class="calendar-container">
+    <div class="calendar">
+      <div class="header">
+        <button id="prev" class="nav-btn">←</button>
+        <h2 id="month-year">Outubro 2025</h2>
+        <button id="next" class="nav-btn">→</button>
+      </div>
+
+      <div class="weekdays" id="weekdays">
+        <div class="weekend">Dom</div>
+        <div class="weekday">Seg</div>
+        <div class="weekday">Ter</div>
+        <div class="weekday">Qua</div>
+        <div class="weekday">Qui</div>
+        <div class="weekday">Sex</div>
+        <div class="weekend">Sáb</div>
+      </div>
+
+      <div class="days" id="days"></div>
+    </div>
+    <div class="linha"></div>
+      <img src="../img/homeri.png" alt="" class="direta">
+     <img src="../img/homeleft.png" alt="" class="esquerda">
+    </div>
+  </section>
 
   <!-- Daily Routine -->
   <section class="routine-section">
@@ -110,7 +144,7 @@
   </section>
 
   <!-- Footer -->
-  <footer>
+</main> <footer>
     <div class="socials">
       <a href="#">f</a>
       <a href="#">💬</a>
