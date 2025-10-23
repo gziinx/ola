@@ -19,7 +19,7 @@ async function buscarEventos() {
       marcarDiasComEventos(todosEventos);
 
       // NOVO: Carregar os eventos do dia atual no Card Azul por padrão
-      const hoje = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+      const hoje = new Date().toISOString().split('T')[0]; // YYYY-MM-  
       const eventosHoje = todosEventos.filter(evento => evento.data_calendario.split('T')[0] === hoje);
       exibirEventosNoCardAzul(eventosHoje, hoje);
     }
